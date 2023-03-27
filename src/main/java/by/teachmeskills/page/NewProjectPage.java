@@ -22,26 +22,25 @@ public class NewProjectPage {
     private static final By CLOSE_ICON = By.xpath("//button [@class='wm4NvL Vb722t']");
 
     public boolean isOpened() {
-        $(TITLE).shouldBe(visible, Duration.ofSeconds(5));
         return $(TITLE).isDisplayed();
     }
 
-    public NewProjectPage enterProjectName(String projectName){
+    public NewProjectPage enterProjectName(String projectName) {
         $(PROJECT_NAME).shouldBe(visible, enabled).sendKeys(projectName);
         return this;
     }
 
-    public ProjectDetailsPage clickCreateProject(){
+    public ProjectDetailsPage clickCreateProject() {
         $(CREATE_PROJECT).shouldBe(visible, enabled).click();
         return new ProjectDetailsPage();
     }
 
-    public ProjectsPage clickCloseIcon(){
+    public ProjectsPage clickCloseIcon() {
         $(CLOSE_ICON).shouldBe(enabled).click();
         return new ProjectsPage();
     }
 
-    public NewProjectPage choosePublicAccess(){
+    public NewProjectPage choosePublicAccess() {
         $(PUBLIC_ACCESS).click();
         return this;
     }

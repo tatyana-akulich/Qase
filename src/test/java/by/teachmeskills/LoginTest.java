@@ -16,6 +16,10 @@ public class LoginTest {
                 .as("After entering valid credentials Projects page should be opened")
                 .isTrue();
         new Header().signOut();
+        /*new LoginPage().openPage();
+        assertThat(new LoginPage().isOpened())
+                .as("Login page should be opened")
+                .isTrue();*/
     }
 
     @Test

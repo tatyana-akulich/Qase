@@ -1,11 +1,9 @@
 package by.teachmeskills.page;
 
-import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static com.codeborne.selenide.Condition.enabled;
 import static com.codeborne.selenide.Condition.visible;
@@ -28,7 +26,6 @@ public class ProjectsPage extends Header {
     }
 
     public boolean isOpened() {
-        $(TITLE).shouldBe(visible, Duration.ofSeconds(5));
         return $(TITLE).isDisplayed();
     }
 
@@ -42,12 +39,12 @@ public class ProjectsPage extends Header {
         return this;
     }
 
-    public ProjectsPage clickConfirmDelete (){
+    public ProjectsPage clickConfirmDelete() {
         $(CONFIRM_DELETE_PROJECT).shouldBe(visible, enabled).click();
         return this;
     }
 
-    public boolean deleteMessageContainsProjectName (String projectName){
+    public boolean deleteMessageContainsProjectName(String projectName) {
         return $(By.xpath(String.format(DELETE_CONFIRMATION_MESSAGE, projectName))).isDisplayed();
     }
 
