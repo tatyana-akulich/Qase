@@ -1,5 +1,7 @@
 package by.teachmeskills.page;
 
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
 import java.time.Duration;
@@ -52,5 +54,17 @@ public class LoginPage {
     public ProjectsPage clickLogin() {
         $(LOGIN_BUTTON).click();
         return new ProjectsPage();
+    }
+
+    public boolean isValidationMessageShown() {
+        SelenideElement emailInput = $(EMAIL);
+        SelenideElement passwordInput = $(PASSWORD);
+        String text = null;
+        if (!(Boolean) Selenide.executeJavaScript("return arguments[0].validity.valid;", emailInput)) {
+            text += Selenide.executeJavaScript("return arguments[0].validationMessage;", emailInput);
+        } else if (!(Boolean) Selenide.executeJavaScript("return arguments[0].validity.valid;", passwordInput)) {
+            text += Selenide.executeJavaScript("return arguments[0].validationMessage;", passwordInput);
+        }
+        return !text.isEmpty();
     }
 }
