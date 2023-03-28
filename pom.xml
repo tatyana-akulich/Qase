@@ -15,6 +15,7 @@
         <testng.version>7.7.1</testng.version>
         <assertj.version>3.24.2</assertj.version>
         <javafaker.version>1.0.2</javafaker.version>
+        <lombok.version>1.18.8</lombok.version>
 
     </properties>
     <dependencies>
@@ -43,6 +44,13 @@
             <groupId>com.github.javafaker</groupId>
             <artifactId>javafaker</artifactId>
             <version>${javafaker.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
         </dependency>
 
 

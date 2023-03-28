@@ -12,19 +12,22 @@ public class LoginTest {
     @Test
     public void loginAsValidUser() {
         new LoginSteps().loginWithValidCredentials();
+
         assertThat(new ProjectsPage().isOpened())
                 .as("After entering valid credentials Projects page should be opened")
                 .isTrue();
+
         new Header().signOut();
-        /*new LoginPage().openPage();
-        assertThat(new LoginPage().isOpened())
-                .as("Login page should be opened")
-                .isTrue();*/
     }
 
     @Test
     public void loginWithEmptyValues() {
         new LoginSteps().login("", "");
+
+        assertThat(new LoginPage().isValidationMessageShown())
+                .as("Validation message should be shown if login or password is invalid")
+                .isTrue();
+
         assertThat(new ProjectsPage().isOpened())
                 .as("After entering wrong credentials Projects page should not be opened")
                 .isFalse();
@@ -33,8 +36,9 @@ public class LoginTest {
     @Test
     public void loginWithValidEmail() {
         new LoginPage().openPage().enterValidEmail().enterPassword("").clickLogin();
-        assertThat(new ProjectsPage().isOpened())
-                .as("After entering wrong credentials Projects page should not be opened")
-                .isFalse();
+
+        assertThat(new LoginPage().isValidationMessageShown())
+                .as("Validation message should be shown if login or password is invalid")
+                .isTrue();
     }
 }
